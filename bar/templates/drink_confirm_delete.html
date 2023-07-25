@@ -1,0 +1,20 @@
+<!-- bar/drink_confirm_delete.html -->
+
+{% extends "base.html" %}
+{% block title %}Delete Drink{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Confirm Deletion</h1>
+                <p class="card-text">Are you sure you want to delete the drink "{{ drink.name }}"?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger mr-2">Confirm Delete</button>
+                    <a href="{% url 'drink_list' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

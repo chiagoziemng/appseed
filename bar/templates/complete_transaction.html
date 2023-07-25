@@ -1,0 +1,16 @@
+<!-- complete_transaction.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Insufficient Quantity{% endblock %}
+
+{% block content %}
+    <h1>Insufficient Quantity</h1>
+    <p>The following drinks have insufficient quantity:</p>
+    <ul>
+        {% for drink in insufficient_drinks %}
+            <li>{{ drink.name }} - Available Quantity: {{ drink.quantity_in_stock }}</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-primary" href="{% url 'cart' %}">Back to Cart</a>
+{% endblock %}

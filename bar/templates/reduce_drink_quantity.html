@@ -1,0 +1,16 @@
+<!-- reduce_drink_quantity.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Reduce Drink Quantity{% endblock %}
+
+{% block content %}
+    <h1>Reduce Drink Quantity</h1>
+    <p>Drink: {{ drink.name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="quantity_to_reduce">Quantity to Reduce:</label>
+        <input type="number" id="quantity_to_reduce" name="quantity_to_reduce" min="1" required>
+        <button type="submit" class="btn btn-primary">Reduce</button>
+    </form>
+{% endblock %}

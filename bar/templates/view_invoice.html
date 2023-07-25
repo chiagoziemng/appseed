@@ -1,0 +1,18 @@
+<!-- view_invoice.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Invoice{% endblock %}
+
+{% block content %}
+    <h1>Invoice</h1>
+    <p>Invoice ID: {{ invoice.pk }}</p>
+    <p>Transaction Date: {{ invoice.transaction.transaction_date }}</p>
+    <p>Total Amount: ${{ invoice.transaction.total_amount }}</p>
+    <h2>Items:</h2>
+    <ul>
+        {% for order in invoice.transaction.orders.all %}
+            <li>{{ order.quantity }} x {{ order.drink.name }} - Total: ${{ order.total_price }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

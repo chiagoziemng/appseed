@@ -1,0 +1,16 @@
+<!-- bar/drink_form.html -->
+
+{% extends "base.html" %}
+{% block title %}Update Drink{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Update Drink</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mt-2">Update Drink</button>
+        </form>
+    </div>
+{% endblock %}
+

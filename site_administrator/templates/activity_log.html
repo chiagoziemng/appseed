@@ -1,0 +1,14 @@
+<!-- site_administrator/activity_log.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Site Administrator - Activity Log{% endblock %}
+
+{% block content %}
+    <h1>Site Administrator - Activity Log</h1>
+    <ul>
+        {% for entry in activity_log_entries %}
+            <li>{{ entry }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

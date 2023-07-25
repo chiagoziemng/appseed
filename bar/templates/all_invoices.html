@@ -1,0 +1,18 @@
+<!-- all_invoices.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - All Invoices{% endblock %}
+
+{% block content %}
+    <h1>All Invoices</h1>
+    <ul>
+        {% for invoice in invoices %}
+            <li>
+                <a href="{% url 'view_invoice' invoice_id=invoice.pk %}">
+                    Invoice ID: {{ invoice.pk }} - Transaction Date: {{ invoice.transaction.transaction_date }} - Total Amount: ${{ invoice.transaction.total_amount }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

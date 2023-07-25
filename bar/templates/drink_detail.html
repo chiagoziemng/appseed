@@ -1,0 +1,24 @@
+<!-- bar/drink_detail.html -->
+
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}{{ drink.name }} - Drink Details{% endblock %}
+
+{% block content %}
+    <h1>{{ drink.name }}</h1>
+    <p>Price: ${{ drink.price }}</p>
+    <p>Quantity in Stock: {{ drink.quantity_in_stock }}</p>
+    <p>Category: {{ drink.category }}</p>  <!-- Display the category -->
+
+    <!-- Display drink history -->
+    <h3>Drink History:</h3>
+    <ul>
+        {% for history in drink.drinkhistory_set.all %}
+            <li>{{ history }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a link to update the drink -->
+    <a href="{% url 'update_drink' drink.pk %}" class="btn btn-primary">Update Drink</a>
+{% endblock %}

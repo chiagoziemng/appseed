@@ -1,0 +1,25 @@
+<!-- add_drink.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Add Drink{% endblock %}
+
+{% block content %}
+    <h1>Add Drink</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="drink_name">Drink Name:</label>
+        <input type="text" id="drink_name" name="drink_name" required>
+        <label for="drink_price">Price:</label>
+        <input type="number" id="drink_price" name="drink_price" step="0.01" required>
+        <label for="drink_quantity">Quantity in Stock:</label>
+        <input type="number" id="drink_quantity" name="drink_quantity" min="0" required>
+        <label for="drink_category">Category:</label>
+        <select id="drink_category" name="drink_category" required>
+            {% for category in categories %}
+                <option value="{{ category.pk }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+{% endblock %}

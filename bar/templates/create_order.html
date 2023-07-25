@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Create Order{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h3 class="page-title">Create Order</h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Drink table </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="drink_id">Select Drink:</label>
+                    <select class="form-control" name="drink_id" id="drink_id">
+                        {% for drink in drinks %}
+                            <option value="{{ drink.pk }}">{{ drink.name }} - {{ drink.price }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input class="form-control" type="number" name="quantity" value="1" min="1">
+                </div>
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+            <p class="mt-3">
+                <a class="btn btn-secondary" href="{% url 'drink_list' %}">Back to Drinks List</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Transaction Complete{% endblock %}
+
+{% block content %}
+    <h1>Transaction Complete</h1>
+    <p>Thank you for your purchase!</p>
+    <p>Transaction Date: {{ transaction.transaction_date }}</p>
+    <p>Total Amount: {{ transaction.total_amount }}</p>
+    <p>
+        <a class="btn btn-primary" href="{% url 'invoice' transaction.id %}">View Invoice</a>
+    </p>
+    <p>
+        <a class="btn btn-secondary" href="{% url 'drink-list' %}">Back to Drinks List</a>
+    </p>
+{% endblock %}

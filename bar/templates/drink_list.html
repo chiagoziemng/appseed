@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - Drinks List{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h3 class="page-title">Drink Table</h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> Drink table </li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="page-header flex-wrap">
+    <div class="header-left">
+      <button class="btn btn-primary mb-2 mb-md-0 mr-2"> Create new document </button>
+      <button class="btn btn-outline-primary mb-2 mb-md-0"> Import documents </button>
+      <a class="btn btn-primary" href="{% url 'cart' %}">Go to Cart</a>
+      <a class="btn btn-primary" href="{% url 'create_category' %}">Create Category</a>
+      <a class="btn btn-primary" href="{% url 'all_categories' %}">All Categories</a>
+      <a class="btn btn-primary" href="{% url 'download_pdf' %}" target="_blank">Download PDF</a>
+    </div>
+    <div class="header-right d-flex flex-wrap mt-md-2 mt-lg-0">
+      <div class="d-flex align-items-center">
+       
+      </div>
+      <a href="{% url 'add_drink' %}" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+        <i class="mdi mdi-plus-circle"></i> Add Drink</a>
+    </div>
+  </div>
+  <form method="get" class="form-inline mb-4">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary ml-2">Filter</button>
+</form>
+<div class="row">
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Bordered table</h4>
+        <p class="card-description"> Add class <code>.table-bordered</code>
+        </p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity in Stock</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for drink in drinks %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ drink.name }}</td>
+                    <td>{{ drink.category }}</td>
+                    <td>{{ drink.price }}</td>
+                    <td>{{ drink.quantity_in_stock }}</td>
+                    <td>     <a href="{% url 'add_drink_quantity' drink_id=drink.pk %}">[Add Quantity]</a>
+                        <a href="{% url 'reduce_drink_quantity' drink_id=drink.pk %}">[Reduce Quantity]</a>
+                        <a href="{% url 'delete_drink' drink.pk %}" class="btn btn-danger">Delete Drink</a>
+                        <a href="{% url 'update_drink' drink.pk %}" class="btn btn-primary">Update Drink</a>
+                        <a href="{% url 'drink_detail' drink.pk %}" class="btn btn-primary">Detail</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          <div class="pagination mt-4">
+            <span class="step-links">
+                {% if drinks.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ drinks.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ drinks.number }} of {{ drinks.paginator.num_pages }}.
+                </span>
+
+                {% if drinks.has_next %}
+                    <a href="?page={{ drinks.next_page_number }}">next</a>
+                    <a href="?page={{ drinks.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    
+{% endblock %}

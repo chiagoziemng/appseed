@@ -1,0 +1,14 @@
+<!-- all_categories.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Bar Management System - All Categories{% endblock %}
+
+{% block content %}
+    <h1>All Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
